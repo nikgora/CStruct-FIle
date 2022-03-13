@@ -25,7 +25,6 @@ int main()
     do {
         char word[N] = "";
         _Bool q = 0;
-        _Bool w = 1;
         scanword_znachenie(word);
         symbol = word[strlen(word) - 1];
         if (symbol == '.') {
