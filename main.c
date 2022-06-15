@@ -21,7 +21,7 @@ int main()
 {
     char symbol;
     char sent[N]="";
-    int i = 1,j=0;
+    int i = 1, j = 0;
     do {
         char word[N] = "";
         _Bool q = 0;
