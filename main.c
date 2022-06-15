@@ -5,16 +5,16 @@
 
 #define N 100
 
-void print_znachenie(char str[]);//вывод строки в прямом порядке принимает строку
+void print_znachenie(char str[N]);//вывод строки в прямом порядке принимает строку
 
-void print_reverse_znachenie(char str[]);//вывод строки в обратном порядке принимает строку
+void print_reverse_znachenie(char str[N]);//вывод строки в обратном порядке принимает строку
 
-char *reverse_znachenie(char str[]);//инвертирование строки принимает строку результат строка
+void reverse_znachenie(char str[N]);//инвертирование строки принимает строку результат строка
 
-char *scanword_znachenie(char word[]);//ввод строки  принимает строку в которую надо записать строку результат строка
+void scanword_znachenie(char word[N]);//ввод строки  принимает строку в которую надо записать строку результат строка
 
-char *skipspace_znachenie(
-        char word[]);//пропуск серии пробелов принимает строку которую надо отфарматировать результат отфаромотированая строка
+void skipspace_znachenie(
+        char word[N]);//пропуск серии пробелов принимает строку которую надо отфарматировать результат отфаромотированая строка
 
 
 int main()
@@ -42,8 +42,10 @@ int main()
         } else {
             i++;
             for (int k = 0; k < strlen(word); ++k) {
-                sent[j]= reverse_znachenie(word)[k];
+                reverse_znachenie(word);
+                sent[j]= word[k];
                 ++j;
+                reverse_znachenie(word);
             }
         }
         if (q)
@@ -58,18 +60,19 @@ int main()
         }
 
     } while (symbol != '.');
-    print_znachenie(skipspace_znachenie(sent));
+    skipspace_znachenie(sent);
+    print_znachenie(sent);
     //print_znachenie(skipspace_znachenie("    ad!@ 1332       m       m    "));
     return 0;
 }
 
-void print_znachenie(char str[]) {
+void print_znachenie(char str[N]) {
     for (int i = 0; i < strlen(str); ++i) {
         printf("%c", str[i]);
     }
 }
 
-char *reverse_znachenie(char str[]) {
+void reverse_znachenie(char str[N]) {
     char res[N] = "";
     int j = 0;
     for (int i = 0; i < strlen(str); i++) {
@@ -83,14 +86,20 @@ char *reverse_znachenie(char str[]) {
         printf("i=%d res[i]=%c\n", i, res[i]);
     }
     */
-    return res;
+    for (int i = 0; i < strlen(res); ++i) {
+        str[i] = res[i];
+    }
+    for (int i = strlen(res); i < N; ++i) {
+        str[i] = '\0';
+    }
 }
 
-void print_reverse_znachenie(char str[]) {
-    print_znachenie(reverse_znachenie(str));
+void print_reverse_znachenie(char str[N]) {
+    reverse_znachenie(str);
+    print_znachenie(str);
 }
 
-char *scanword_znachenie(char word[]) {
+void scanword_znachenie(char word[N]) {
     char symbol;
     int i = 0;
     do {
@@ -98,10 +107,9 @@ char *scanword_znachenie(char word[]) {
         word[i] = symbol;
         i++;
     } while (symbol != ' ' && symbol != '.');
-    return word;
 }
 
-char *skipspace_znachenie(char word[]) {
+void skipspace_znachenie(char word[N]) {
     char res[N] = "";
     _Bool q = 0;
     int j = 0;
@@ -118,5 +126,10 @@ char *skipspace_znachenie(char word[]) {
         }
     }
     if (res[strlen(res) - 1] == ' ')res[strlen(res) - 1] = '\0';
-    return res;
+    for (int i =0; i< strlen(res);++i){
+        word[i]=res[i];
+    }
+    for (int i = strlen(res); i < N; ++i) {
+        word[i]='\0';
+    }
 }
