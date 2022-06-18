@@ -1,2 +1,3 @@
-Your name is n.
+Your name is Nik.
 You are 1 years old.
+Your sex is Man.
