@@ -31,9 +31,6 @@ int main() {
         puts("Error! opening file");
         exit(1);
     }
-    for (int i = 0; i < 1e9; ++i) {
-        fputs("\0",file);
-    }
     fprintf(file,"Your name is %s.\nYou are %d years old.",people.field.name,people.field.age);
     fclose(file);
     return 0;
