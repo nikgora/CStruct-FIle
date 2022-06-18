@@ -69,11 +69,11 @@ enum sex input_enum (int num)
 
 }
 
-void print_enum (enum sex se,char s[N])
+void print_enum (enum sex sex,char s[N])
 
 {
 
-    switch (se)
+    switch (sex)
 
     {
 
